@@ -100,21 +100,34 @@ function printQuote() {
 
   var getRandom = getRandomQuotes(); //calls getRandomQuote() function
 
-  printHTML += '<p class="quote">' + getRandom.quote + '</p>';
-  printHTML += '<p class="source">' + getRandom.source ;
+  printHTML += '<p class="quote">' + getRandom.quote + '</p>'; //adds quote to string
+  printHTML += '<p class="source">' + getRandom.source ; //adds source to string
 
   if (getRandom.hasOwnProperty('citation')) {
-    printHTML += '<span class="citation">' + getRandom.citation + '</span>';
+    printHTML += '<span class="citation">' + getRandom.citation + '</span>'; //adds citation to string
     } 
 
   if (getRandom.hasOwnProperty('year')) {
-    printHTML += '<span class="year">' + getRandom.year + '</span>';
+    printHTML += '<span class="year">' + getRandom.year + '</span>'; //adds year to string
     }   
 
   printHTML += '</p>';
   document.getElementById('quote-box').innerHTML = printHTML;
 
+  randomColor(); //calls random background function
+
   return printHTML;
 }
 
-document.getElementById('load-quote').addEventListener("click", printQuote, false);
+
+function randomColor() {
+  var red = Math.floor(Math.random() * 256);
+  var green = Math.floor(Math.random() * 256);
+  var blue = Math.floor(Math.random() * 256); //generates random number to set rgb values
+  var backgroundColor = "rgb(" + red + "," + green + "," + blue + ")";
+
+  document.body.style.background = backgroundColor;
+  }
+
+
+document.getElementById('load-quote').addEventListener("click", printQuote, randomColor, false);
